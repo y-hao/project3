@@ -1,0 +1,12 @@
+all: CoreHamiltonian.exe
+CC=g++
+CFLAG=-c
+
+CoreHamiltonian.exe: CoreHamiltonian.o ReadIntegral.o
+		g++ CoreHamiltonian.o ReadIntegral.o -o CoreHamiltonian.exe
+CoreHamiltonian.o: CoreHamiltonian.cpp
+		g++ -c CoreHamiltonian.cpp -o CoreHamiltonian.o
+ReadIntegral.o: ReadIntegral.cpp 
+		g++ -c ReadIntegral.cpp -o ReadIntegral.o
+clean:
+	 rm CoreHamiltonian.o ReadIntegral.o CoreHamiltonian.exe

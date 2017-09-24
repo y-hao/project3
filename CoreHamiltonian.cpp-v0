@@ -1,0 +1,58 @@
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+#include<cstdio>
+#include<cassert>
+#include<vector>
+
+using namespace std;
+
+
+int main() {
+    cout << "This is CoreHamiltonian" << endl;
+    
+    vector< vector<double> > *pVm = new vector< vector<double> >(7, vector<double>(7, 0.));
+    vector< vector<double> > *pTm = new vector< vector<double> >(7, vector<double>(7, 0.));
+    vector< vector<double> > *pHc = new vector< vector<double> >(7, vector<double>(7, 0.));
+
+    /*
+    for(int m=0; m<(*pVm).size(); m++)        
+    {
+        for(int n=0; n<(*pVm)[m].size(); n++){
+            (*pVm)[m][n]=0.;
+        }
+    }
+    */
+   
+    void readIntegral(const char* filename, vector< vector<double> >* matrix);
+    readIntegral("v.dat",pVm);
+    readIntegral("t.dat",pTm);
+    for(int m=0; m<(*pVm).size(); m++)        
+    {
+        for(int n=0; n<(*pVm)[m].size(); n++) 
+            cout<<(*pVm)[m][n]<<" " << setprecision(16) << endl;
+    }
+
+    return 0;
+}
+
+void readIntegral(const char* filename, vector< vector<double> >* matrix){
+
+    int i=0;
+    int j=0;
+    double element=0.;
+    
+    std::ifstream is(filename);                                                 
+    //assert(is.good());
+    while(is.good()){
+    
+		is >> i >> j >> element;
+      cout << i << " : " << j << " : " << element << endl;
+      (*matrix)[i-1][j-1]=element; 
+
+    }
+
+    is.close();
+    
+    return;
+}

@@ -13,6 +13,7 @@ void readIntegral(const char* filename, vector< vector<double> >* pMatrix){
       is >> i >> j >> element;
       cout << i << " : " << j << " : " << element << endl;
       (*pMatrix)[i-1][j-1]=element; 
+      (*pMatrix)[j-1][i-1]=element; 
 
     }
 
@@ -33,10 +34,14 @@ void initalizeMatrix(vector< vector<double> >* pMatrix){
     
 
 void showMatrix(vector< vector<double> >* pMatrix){
+
+    cout << "showing matrix..." << endl;
     for(unsigned m=0; m<(*pMatrix).size(); m++)
     {
-        for(unsigned n=0; n<(*pMatrix)[m].size(); n++)
-            cout<<(*pMatrix)[m][n]<<" " << setprecision(16) << endl;
+        for(unsigned n=0; n<(*pMatrix)[m].size(); n++){
+            cout<<(*pMatrix)[m][n]<<" " << setprecision(16);
+        }
+        cout << endl;
     }
 
 }
@@ -55,7 +60,9 @@ void addMatrix(vector< vector<double> >* pHMatrix, vector< vector<double> >* pMa
       {
           for(unsigned n=0; n<(*pHMatrix)[m].size(); n++){
               (*pHMatrix)[m][n]=(*pMatrix1)[m][n]+(*pMatrix2)[m][n];
-              cout<<(*pHMatrix)[m][n]<<" " << setprecision(16) << endl;
+              cout<<"(*pMatrix1)[m][n]: "<<(*pMatrix1)[m][n]<< setprecision(16) << endl;
+              cout<<"(*pMatrix2)[m][n]: "<<(*pMatrix2)[m][n]<< setprecision(16) << endl;
+              cout<<m<<" "<<n<<" "<<(*pHMatrix)[m][n]<<" " << setprecision(16) << endl;
           }
       }
 
